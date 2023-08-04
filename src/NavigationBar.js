@@ -26,7 +26,7 @@ console.log(user)
           <>
           <Navbar.Text>
           Hello, {user.loggedUser.name}
-          <button onClick={handleLogout}>Logout</button>
+          <button onClick={handleLogout}>Log me out</button>
           </Navbar.Text>
            
           </>
