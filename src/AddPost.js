@@ -71,10 +71,10 @@ else {
     <div className='container'>
 
     {
-         user ? (<div class="clearfix">
+         user ? (<div className="clearfix">
           <Button variant="primary" className="float-end" onClick={handleShow}>
         Add Post      </Button></div>)  : (
-        <div class="alert alert-danger" role="alert">
+        <div className="alert alert-danger" role="alert">
         You need to login to post
       </div>
         )
@@ -96,7 +96,7 @@ else {
           <textarea value={body} className='form-control' placeholder='Post Body' onChange={handleBodyChange} />
         </div>
         <span>{reset}</span>
-        <div class="d-grid gap-2 mx-auto pt-4">
+        <div className="d-grid gap-2 mx-auto pt-4">
         <button type="submit">Submit</button>
         </div>
       </form>

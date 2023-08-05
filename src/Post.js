@@ -73,8 +73,8 @@ useEffect(() => {
   <>
   <div className='container'>
                <div className='mx-auto p-2'>
-        <div class="card" >
-          <div class="card-body">
+        <div className="card" >
+          <div className="card-body">
           <ul className='list-items'>
     
 
@@ -88,10 +88,10 @@ useEffect(() => {
                   
                  
                   {
-         user ? ( <div class="clearfix">
+         user ? ( <div className="clearfix">
          <Button variant="primary" className="float-end" onClick={handleShow}>
          Add Comment      </Button> </div>)  : (
-        <div class="alert alert-danger" role="alert">
+        <div className="alert alert-danger" role="alert">
         You need to login to comment
       </div>
         )
@@ -108,8 +108,8 @@ useEffect(() => {
 
 <div className='mx-auto p-2'>
 
-      <div class="card" >
-          <div class="card-body">
+      <div className="card" >
+          <div className="card-body">
           <p className='h5'>Comments</p>
 
 <ul className='list-group list-unstyled'>
@@ -118,10 +118,10 @@ useEffect(() => {
               return (
                 <li key={post.id}>
                   <figure className='list-group-item list-group-item-action'>
-  <blockquote class="blockquote">
+  <blockquote className="blockquote">
     <p>{post.body}</p>
   </blockquote>
-  <figcaption class="blockquote-footer">
+  <figcaption className="blockquote-footer">
     Comment by <cite title="Source Title">{post.email}</cite>
   </figcaption>
 </figure>
@@ -165,7 +165,7 @@ useEffect(() => {
             </div>
         </Modal.Body>
         <Modal.Footer>
-        <div class="d-grid gap-2 mx-auto pt-4">
+        <div className="d-grid gap-2 mx-auto pt-4">
 
           <Button variant="primary" onClick={handleClose}>
             Add Comment

@@ -5,7 +5,7 @@ import AddPost from './AddPost';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
-
+import { Spinner } from './Spinner';
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -26,9 +26,7 @@ const Home = () => {
   };
 
   
-  const Spinner = () => (
-    <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  );
+  
 
   const [enableSpinner, setEnableSpinner] = useState(false);
 
@@ -114,14 +112,14 @@ console.log(posts);
 
         <div className='mx-auto p-2'>
   
-        <div class="card">
-              <div class="card-body">
-          <div class="row">
+        <div className="card">
+              <div className="card-body">
+          <div className="row">
           
                 <p className='h5'>User Filter</p>
   
-                <div class="col">
-                  <select class="form-control" value={selectedUser} onChange={handleUserChange}>
+                <div className="col">
+                  <select className="form-control" value={selectedUser} onChange={handleUserChange}>
                     <option value="">All Users</option>
                     {users.map((user) => (
                       <option key={user?.id} value={user?.id}>
@@ -130,10 +128,10 @@ console.log(posts);
                     ))}
                   </select>
                 </div>
-                <div class="col">
+                <div className="col">
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     value={searchText}
                     onChange={handleSearchTextChange}
                     placeholder="Search Posts"
@@ -149,8 +147,8 @@ console.log(posts);
         </div>
   
         <div className='mx-auto p-2'>
-          <div class="card" >
-            <div class="card-body">
+          <div className="card" >
+            <div className="card-body">
                <AddPost  onValueReceive={handleValueReceive} />
   
                <p className='h5'>Posts</p>
@@ -163,12 +161,12 @@ console.log(posts);
                   return (
   
                     <li key={post.id}>
-                      <div class="list-group-item list-group-item-action" aria-current="true">
-                        <div class="d-flex w-100 justify-content-between">
-                          <h5 class="mb-1"><Link to={`post/${post?.id}`} variant="link"> {post.title}</Link></h5>
+                      <div className="list-group-item list-group-item-action" aria-current="true">
+                        <div className="d-flex w-100 justify-content-between">
+                          <h5 className="mb-1"><Link to={`post/${post?.id}`} variant="link"> {post.title}</Link></h5>
                           <small>3 days ago</small>
                         </div>
-                        <p class="mb-1 lead">{post.body}</p>
+                        <p className="mb-1 lead">{post.body}</p>
                         <small><Link to={`user/${user?.id}`}>{user && <p>Posted by: {user.name}</p>}</Link></small>
                       </div>
   
@@ -184,7 +182,7 @@ console.log(posts);
   
   
         {/* Pagination */}
-        <div class="d-flex justify-content-center mx-auto p-2">
+        <div className="d-flex justify-content-center mx-auto p-2">
           {Array.from({ length: Math.ceil(filteredPosts2?.length / postsPerPage) }).map((_, index) => (
             <div key={index}>
               <ButtonToolbar key={index} aria-label="Toolbar with button groups">

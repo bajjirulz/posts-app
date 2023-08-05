@@ -47,9 +47,9 @@ else{
 
   return (
     <div className='d-flex justify-content-center  mt-40 align-items-center flex-wrap'>
-    <div class="card text-bg-light mb-3" style={{"max-width": "18rem"}}>
-  <div class="card-header text-center"><h5>Login</h5></div>
-  <div class="card-body">
+    <div className="card text-bg-light mb-3" style={{"max-width": "18rem"}}>
+  <div className="card-header text-center"><h5>Login</h5></div>
+  <div className="card-body">
       <form onSubmit={handleLogin}>
         <div>
           <label htmlFor="username">Username:</label>
