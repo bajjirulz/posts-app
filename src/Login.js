@@ -6,38 +6,37 @@ const Login = () => {
   const { login } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [reset, setReset] = useState("");
 
-  const [posts, setPosts] = useState([]);
+
+  // const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Simulate login logic, replace with actual login implementation
-    // const userData = { username, name: '' };
-    // login(userData);
-    var loggedUser = users.find(d => d.id == username)
-    console.log(users,username);
+  
+if(username !=="" && password !==""){
 
-    if (loggedUser) {
-        const userData = { loggedUser, name: '' };
-    login(userData);
-    console.log(userData)
-    navigate(`/`);
-
-    }
-
+  var loggedUser = users.find(d => d.id == username)
+  console.log(users,username);
+      if (loggedUser) {
+          const userData = { loggedUser, name: '' };
+      login(userData);
+      console.log(userData)
+      navigate(`/`);
+  
+      }
+}
+else{
+  setReset("Please enter login id and password");
+}
 
   };
 
 
 
   useEffect(() => {
-    // Fetch posts
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then((response) => response.json())
-      .then((data) => setPosts(data))
-      .catch((error) => console.error('Error fetching posts:', error));
 
     // Fetch users
     fetch('https://jsonplaceholder.typicode.com/users')
@@ -61,6 +60,7 @@ const Login = () => {
           <input type="password" className='form-control' id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         <br/>
+        <span>{reset}</span>
         <div className="d-grid gap-2">
         <button type="submit">Log In</button>
         </div>

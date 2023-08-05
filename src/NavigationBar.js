@@ -18,15 +18,15 @@ console.log(user)
 
     <Navbar bg="primary" data-bs-theme="dark">
     <Container>
-      <Navbar.Brand href="/">Navbar</Navbar.Brand>
+      <Navbar.Brand to="/">Posts App</Navbar.Brand>
       <Nav className="me-auto">
-        <Nav.Link to="/">Home</Nav.Link>
+        <Link to="/">Home</Link>
         <Navbar.Collapse className="justify-content-end">
         {user ? (
           
           <>
           <Navbar.Text>
-          Hello, {user.loggedUser.name}
+          <Link to={`user/${user.loggedUser.id}`}>Hello, {user.loggedUser.name}</Link>
           <button onClick={handleLogout}>Log me out</button>
           </Navbar.Text>
            

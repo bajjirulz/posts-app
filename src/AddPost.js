@@ -9,13 +9,20 @@ const AddPost = ({onValueReceive}) => {
 
     const [show, setShow] = useState(false);
 
-    const handleShow = () => setShow(true);
+    
 
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
+  const [reset, setReset] = useState("");
+
+  const handleShow = () =>{ setShow(true); 
+    setTitle('');
+    setBody('');
+    setReset(false)};
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
+
   };
 
   const handleBodyChange = (e) => {
@@ -33,26 +40,31 @@ const AddPost = ({onValueReceive}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const newPost = {
+if(title !== "" && body !== ""){
+  const newPost = {
         
-      title,
-      body,
-      userId:user.loggedUser.id , // Set the user ID as required by the JSONPlaceholder API
-    };
+    title,
+    body,
+    userId:user.loggedUser.id , // Set the user ID as required by the JSONPlaceholder API
+  };
 
-    console.log(newPost);
- 
-    try {
-      const response = await axios.post('https://jsonplaceholder.typicode.com/posts', newPost);
-      console.log('New post added:', response.data);
-      setShow(false)
-      onValueReceive(response.data);
-      // Optionally, you can redirect or show a success message here
-    } catch (error) {
-      console.error('Error adding new post:', error);
-      // Handle error, show an error message, etc.
-    }
+  console.log(newPost);
+
+  try {
+    const response = await axios.post('https://jsonplaceholder.typicode.com/posts', newPost);
+    console.log('New post added:', response.data);
+    setShow(false)
+    onValueReceive(response.data);
+    // Optionally, you can redirect or show a success message here
+  } catch (error) {
+    console.error('Error adding new post:', error);
+    // Handle error, show an error message, etc.
+  }
+}
+else {
+  setReset("Please fill title and body")
+}
+   
   };
 
   return (
@@ -83,6 +95,7 @@ const AddPost = ({onValueReceive}) => {
         <div className='pt-4'>
           <textarea value={body} className='form-control' placeholder='Post Body' onChange={handleBodyChange} />
         </div>
+        <span>{reset}</span>
         <div class="d-grid gap-2 mx-auto pt-4">
         <button type="submit">Submit</button>
         </div>

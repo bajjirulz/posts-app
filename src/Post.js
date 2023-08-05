@@ -17,6 +17,7 @@ import { useAuth } from './AuthContext';
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
   const [comments2, setComments2] = useState([]);
+  const [reset, setReset] = useState("");
 
 
 
@@ -42,15 +43,29 @@ useEffect(() => {
   const currentPosts = posts.filter(d=>d.id==id)
 
   const handleSearchTextChange = (event) => {
+    
     setSearchText(event.target.value);
   };
 
-  const handleClose = () => {
-    const corval=comments2.length+1;
+  const handleClose = (e) => {
+    if(searchText !==""){
+      const corval=comments2.length+1;
     var currentCommentsval = comments2;
     currentCommentsval.push({postId: parseInt(id),body: searchText,id:corval, name:"",title: 'Hello', email:user.loggedUser.email});
     setShow(false)
     setComments2(currentCommentsval)
+    }
+    else{
+      setReset("Please enter a comment")
+    }
+    
+    
+  }
+
+  const minClose =  () => {
+    
+    setShow(false)
+    setSearchText("");
   }
 
 
@@ -98,7 +113,7 @@ useEffect(() => {
           <p className='h5'>Comments</p>
 
 <ul className='list-group list-unstyled'>
-    {comments2.map((post) => {
+    {comments2.reverse().map((post) => {
               // Find the user with matching ID
               return (
                 <li key={post.id}>
@@ -133,7 +148,7 @@ useEffect(() => {
     >
       
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={minClose}>
         <Modal.Header closeButton>
           <Modal.Title><p className='h5'>Add Comment</p></Modal.Title>
         </Modal.Header>
@@ -143,9 +158,10 @@ useEffect(() => {
 
                 <textarea  className="form-control" type="text"
         value={searchText}
-        onChange={handleSearchTextChange}>
+        onChange={handleSearchTextChange} >
 
                 </textarea>
+                <span> { reset}</span>
             </div>
         </Modal.Body>
         <Modal.Footer>
