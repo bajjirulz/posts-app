@@ -56,7 +56,7 @@ useEffect(() => {
     setComments2(currentCommentsval)
     }
     else{
-      setReset("Please enter a comment")
+      setReset(<div className="alert alert-danger mx-auto pb-3">Please enter a comment</div>)
     }
     
     
@@ -161,7 +161,7 @@ useEffect(() => {
         onChange={handleSearchTextChange} >
 
                 </textarea>
-                <span> { reset}</span>
+                <span className='alert alert-danger'> { reset}</span>
             </div>
         </Modal.Body>
         <Modal.Footer>

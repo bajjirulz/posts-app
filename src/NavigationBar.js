@@ -4,6 +4,8 @@ import { useAuth } from './AuthContext';
 import { Container } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/Navbar';
+
 
 const NavigationBar = () => {
   const { user, logout } = useAuth();
@@ -16,32 +18,35 @@ console.log(user)
   return (
 <>
 
-    <Navbar bg="primary" data-bs-theme="dark">
+
+    <Navbar expand="lg" bg="primary" data-bs-theme="dark">
     <Container>
       <Navbar.Brand to="/">Posts App</Navbar.Brand>
       <Nav className="me-auto">
-        <Link to="/">Home</Link>
-        <Navbar.Collapse className="justify-content-end">
+        <Link to="/" className='nav-link'>Home</Link>
+      </Nav>
+
+      <Nav>
+      <Navbar.Collapse className="float-end">
         {user ? (
           
           <>
-          <Navbar.Text>
-          <Link to={`user/${user.loggedUser.id}`}>Hello, {user.loggedUser.name}</Link>
-          <button onClick={handleLogout}>Log me out</button>
-          </Navbar.Text>
-           
+          <Link to={`user/${user.loggedUser.id}`} className='nav-link' style={{"marginRight":"20px"}}>Hello, {user.loggedUser.name}</Link>
+          <button onClick={handleLogout} className='mx-auto pr-3'>Log me out</button>           
           </>
         ) : (
-          <Link to="/login">Login</Link>
+          <Link to="/login" className="btn btn-outline-light" >Login</Link>
         )}
           
         </Navbar.Collapse>
-
-        
-     
       </Nav>
+ 
+          
+     
     </Container>
   </Navbar>
+
+  
   
   </>
     

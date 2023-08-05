@@ -29,7 +29,7 @@ if(username !=="" && password !==""){
       }
 }
 else{
-  setReset("Please enter login id and password");
+  setReset(<div className="alert alert-danger mx-auto pb-3">Please enter valid login id and password</div>);
 }
 
   };
@@ -46,8 +46,8 @@ else{
   }, []);
 
   return (
-    <div className='d-flex justify-content-center  mt-40 align-items-center flex-wrap'>
-    <div className="card text-bg-light mb-3" style={{"max-width": "18rem"}}>
+    <div className='d-flex justify-content-center align-items-center flex-wrap'>
+    <div className="card text-bg-light mx-auto mt-5" style={{"maxwidth": "25rem"}}>
   <div className="card-header text-center"><h5>Login</h5></div>
   <div className="card-body">
       <form onSubmit={handleLogin}>
@@ -60,7 +60,7 @@ else{
           <input type="password" className='form-control' id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         <br/>
-        <span>{reset}</span>
+        <span >{reset}</span>
         <div className="d-grid gap-2">
         <button type="submit">Log In</button>
         </div>

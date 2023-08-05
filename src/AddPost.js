@@ -62,7 +62,7 @@ if(title !== "" && body !== ""){
   }
 }
 else {
-  setReset("Please fill title and body")
+  setReset(<div className="alert alert-danger mx-auto pb-3">Please fill title and body</div>)
 }
    
   };
@@ -95,7 +95,7 @@ else {
         <div className='pt-4'>
           <textarea value={body} className='form-control' placeholder='Post Body' onChange={handleBodyChange} />
         </div>
-        <span>{reset}</span>
+        <span className='alert alert-danger'>{reset}</span>
         <div className="d-grid gap-2 mx-auto pt-4">
         <button type="submit">Submit</button>
         </div>
