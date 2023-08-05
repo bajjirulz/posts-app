@@ -43,7 +43,6 @@ const Home = () => {
         if (handleValue) {
           postdata.push(handleValue);
         }
-        console.log(postdata);
         setPosts(postdata);
           setEnableSpinner(false)
       })
@@ -65,7 +64,6 @@ const Home = () => {
 
 
   useEffect(() => {
-console.log(posts);
     const filteredPosts = posts?.filter((post) => {
       return (
        
@@ -94,7 +92,6 @@ console.log(posts);
 
   const handleUserChange = (event) => {
     setSelectedUser(event.target.value);
-    console.log(selectedUser);
   };
 
   const handleSearchTextChange = (event) => {

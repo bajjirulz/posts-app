@@ -33,7 +33,6 @@ useEffect(() => {
       .then((data) => {setComments(data)
         
         var currentComments = data.filter(d=>d.postId==id)
-        console.log(currentComments)
         setComments2(currentComments);
       })
       .catch((error) => console.error('Error fetching posts:', error))

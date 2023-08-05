@@ -42,17 +42,13 @@ const AddPost = ({onValueReceive}) => {
     e.preventDefault();
 if(title !== "" && body !== ""){
   const newPost = {
-        
     title,
     body,
     userId:user.loggedUser.id , // Set the user ID as required by the JSONPlaceholder API
   };
 
-  console.log(newPost);
-
   try {
     const response = await axios.post('https://jsonplaceholder.typicode.com/posts', newPost);
-    console.log('New post added:', response.data);
     setShow(false)
     onValueReceive(response.data);
     // Optionally, you can redirect or show a success message here

@@ -19,11 +19,9 @@ const Login = () => {
 if(username !=="" && password !==""){
 
   var loggedUser = users.find(d => d.id == username)
-  console.log(users,username);
       if (loggedUser) {
           const userData = { loggedUser, name: '' };
       login(userData);
-      console.log(userData)
       navigate(`/`);
   
       }

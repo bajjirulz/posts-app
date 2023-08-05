@@ -9,7 +9,6 @@ import NavDropdown from 'react-bootstrap/Navbar';
 
 const NavigationBar = () => {
   const { user, logout } = useAuth();
-console.log(user)
   const handleLogout = () => {
     // Call the logout function from the AuthContext
     logout();

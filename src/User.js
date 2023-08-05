@@ -35,7 +35,6 @@ useEffect(() => {
   const currentPosts = posts.filter(d=>d.userId==id)
 
   const user = users.find(d=>d.id==id)
-  console.log(currentPosts);
 
   return (
   <>
