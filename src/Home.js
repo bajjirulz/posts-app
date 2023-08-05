@@ -2,6 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AddPost from './AddPost';
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 
 
 const Home = () => {
@@ -16,13 +19,13 @@ const Home = () => {
   const [filteredPosts2, setFilteredPosts2] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 10; 
+  const postsPerPage = 10;
 
   const handleValueReceive = (value) => {
     sethandleReceive(value);
-    };
+  };
 
-    // useEffect(() => {} , [])
+  // useEffect(() => {} , [])
 
   useEffect(() => {
     // Fetch posts
@@ -30,12 +33,12 @@ const Home = () => {
       .then((response) => response.json())
       .then((data) => {
         var postdata = data;
-        if(handleValue){
+        if (handleValue) {
           postdata.push(handleValue);
         }
         console.log(postdata);
         setPosts(postdata);
-        
+
       })
       .catch((error) => console.error('Error fetching posts:', error));
 
@@ -44,7 +47,7 @@ const Home = () => {
       .then((response) => response.json())
       .then((data) => setUsers(data))
       .catch((error) => console.error('Error fetching users:', error));
-  }, [ handleValue]);
+  }, [handleValue]);
   // Get current posts
 
   useEffect(() => {
@@ -58,14 +61,14 @@ const Home = () => {
 
     const filteredPosts = posts.filter((post) => {
       return (
-        
+
         (!selectedUser || post.userId.toString() === selectedUser) &&
         (!searchText ||
-          post.title.toLowerCase().includes(searchText.toLowerCase()) 
-        //   ||
-        //   post.body.toLowerCase().includes(searchText.toLowerCase())
-          
-          )
+          post.title.toLowerCase().includes(searchText.toLowerCase())
+          //   ||
+          //   post.body.toLowerCase().includes(searchText.toLowerCase())
+
+        )
 
       );
     });
@@ -76,11 +79,11 @@ const Home = () => {
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
 
-    console.log(filteredPosts,currentPosts)
+    console.log(filteredPosts, currentPosts)
 
     setFilteredPosts(currentPosts);
   }, [posts, currentPage, selectedUser, searchText]);
-  
+
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -94,60 +97,101 @@ const Home = () => {
   };
 
 
-  
+
   return (
-    <div>
-
-<div>
-
-  <AddPost  onValueReceive={handleValueReceive}  />
-        <h2>User Filter</h2>
-      <select value={selectedUser} onChange={handleUserChange}>
-        <option value="">All Users</option>
-        {users.map((user) => (
-          <option key={user.id} value={user.id}>
-            {user.name}
-          </option>
-        ))}
-      </select>
-      <input
-        type="text"
-        value={searchText}
-        onChange={handleSearchTextChange}
-        placeholder="Search Posts"
-      />
-    </div>
-    
-          <h2>Posts</h2>
+    <div className='container mx-auto p-2'>
 
 
+      <div className='mx-auto p-2'>
 
-      <ul>
-       
+      <div class="card">
+            <div class="card-body">
+        <div class="row">
+        
+              <p className='h5'>User Filter</p>
 
-{filteredPosts.map((post) => {
-          // Find the user with matching ID
-          const user = users.find((user) => user.id === post.userId);
-          return (
+              <div class="col">
+                <select class="form-control" value={selectedUser} onChange={handleUserChange}>
+                  <option value="">All Users</option>
+                  {users.map((user) => (
+                    <option key={user.id} value={user.id}>
+                      {user.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div class="col">
+                <input
+                  type="text"
+                  class="form-control"
+                  value={searchText}
+                  onChange={handleSearchTextChange}
+                  placeholder="Search Posts"
+                />
+              </div>
+            </div>
+          </div>
 
-            <li key={post.id}>
-              <h3><Link to={`post/${post?.id}`} variant="link"> {post.title}</Link></h3>
-              <p>{post.body}</p>
-              <Link to={`user/${user?.id}`}>{user && <p>Posted by: {user.name}</p>}</Link>
+        </div>
 
-            </li>
-          );
-        })}
-      </ul>
+
+
+      </div>
+
+      <div className='mx-auto p-2'>
+        <div class="card" >
+          <div class="card-body">
+             <AddPost  onValueReceive={handleValueReceive} />
+
+             <p className='h5'>Posts</p>
+
+             <ul className='list-group list-unstyled'>
+
+              {filteredPosts.map((post) => {
+                // Find the user with matching ID
+                const user = users.find((user) => user.id === post.userId);
+                return (
+
+                  <li key={post?.id}>
+                    <div class="list-group-item list-group-item-action" aria-current="true">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1"><Link to={`post/${post?.id}`} variant="link"> {post.title}</Link></h5>
+                        <small>3 days ago</small>
+                      </div>
+                      <p class="mb-1 lead">{post.body}</p>
+                      <small><Link to={`user/${user?.id}`}>{user && <p>Posted by: {user.name}</p>}</Link></small>
+                    </div>
+
+
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
 
       {/* Pagination */}
-      <div>
+      <div class="d-flex justify-content-center mx-auto p-2">
         {Array.from({ length: Math.ceil(filteredPosts2.length / postsPerPage) }).map((_, index) => (
-          <button key={index} onClick={() => paginate(index + 1)}>
-            {index + 1}
-          </button>
+          <>
+            <ButtonToolbar key={index} aria-label="Toolbar with button groups">
+              <ButtonGroup className="me-2" aria-label="First group">
+                <Button  onClick={() => paginate(index + 1)}>
+                  {index + 1}
+                </Button>
+              </ButtonGroup>
+            </ButtonToolbar>
+          </>
+
+
         ))}
       </div>
+
+
+
     </div>
   );
 };

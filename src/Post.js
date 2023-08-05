@@ -6,10 +6,8 @@ import Modal from 'react-bootstrap/Modal';
 import userEvent from '@testing-library/user-event';
 import { useAuth } from './AuthContext';
 
-
-const Post = () => {
+  const Post = () => {
   const { user } = useAuth();
-
   const { id } = useParams();
   const [show, setShow] = useState(false);
   const [searchText, setSearchText] = useState('');
@@ -55,44 +53,81 @@ useEffect(() => {
     setComments2(currentCommentsval)
   }
 
-  
 
-  return (<>
-                <ul>
+  return (
+  <>
+  <div className='container'>
+               <div className='mx-auto p-2'>
+        <div class="card" >
+          <div class="card-body">
+          <ul className='list-items'>
     
 
 
-{currentPosts.map((post) => {
-          // Find the user with matching ID
-          return (
-            <li key={post.postId}>
-              <h3>{post.title}</h3>
-              <p>{post.body}</p>
-              
-              <Button variant="primary" onClick={handleShow}>
-Add Comment      </Button>
-            </li>
-          );
-        })}
-      </ul>
+    {currentPosts.map((post) => {
+              // Find the user with matching ID
+              return (
+                <li key={post.id}>
+                  <h3>{post.title}</h3>
+                  <p>{post.body}</p>
+                  
+                 
+                  {
+         user ? ( <div class="clearfix">
+         <Button variant="primary" className="float-end" onClick={handleShow}>
+         Add Comment      </Button> </div>)  : (
+        <div class="alert alert-danger" role="alert">
+        You need to login to comment
+      </div>
+        )
 
-      <ul>
-    
+    }
+                </li>
+              );
+            })}
+          </ul>
+          </div>
+             
+</div>
+</div>
 
-<h1>Comments</h1>
+<div className='mx-auto p-2'>
+
+      <div class="card" >
+          <div class="card-body">
+          <p className='h5'>Comments</p>
+
+<ul className='list-group list-unstyled'>
     {comments2.map((post) => {
               // Find the user with matching ID
               return (
-                <li key={post.name}>
-                  <h3>{post.email}</h3>
-                  <p>{post.body}</p>
+                <li key={post.id}>
+                  <figure className='list-group-item list-group-item-action'>
+  <blockquote class="blockquote">
+    <p>{post.body}</p>
+  </blockquote>
+  <figcaption class="blockquote-footer">
+    Comment by <cite title="Source Title">{post.email}</cite>
+  </figcaption>
+</figure>
+                 
     
                 </li>
               );
             })}
           </ul>
+</div>
 
-          <div
+
+
+
+       
+</div>
+</div>  
+</div>
+
+
+   <div
       className="modal show"
       style={{ display: 'block', position: 'initial' }}
     >
@@ -100,13 +135,13 @@ Add Comment      </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title><p className='h5'>Add Comment</p></Modal.Title>
         </Modal.Header>
         <Modal.Body>
 
             <div>
 
-                <textarea type="text"
+                <textarea  className="form-control" type="text"
         value={searchText}
         onChange={handleSearchTextChange}>
 
@@ -114,18 +149,17 @@ Add Comment      </Button>
             </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
+        <div class="d-grid gap-2 mx-auto pt-4">
+
           <Button variant="primary" onClick={handleClose}>
             Add Comment
           </Button>
+          </div>
         </Modal.Footer>
       </Modal>
     </div>
-
-
-  </>);
+    </>
+  );
 };
 
 export default Post;

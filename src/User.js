@@ -28,37 +28,61 @@ useEffect(() => {
   const user = users.find(d=>d.id==id)
   console.log(currentPosts);
 
-  return (<>
-                <ul>
-        {/* {currentPosts.map((post) => (
-
-
-
-          <li key={post.id}>
-            <h3>{post.title}</h3>
-            <p>{post.body}</p>
-          </li>
-        ))} */}
-
-<h1>Id : {user?.id}</h1>
-<h1>email : {user?.email}</h1>
-<h1>name : {user?.name}</h1>
-<h1>username : {user?.username}</h1>
-
-
-
+  return (
+  <>
+  <div className='container'>
+               <div className='mx-auto p-2'>
+        <div class="card" >
+          <div class="card-body">
+          <div class="container">
+  <div class="row mx-auto p-2">
+    <div class="col">
+    <p className='h5'>Name : {user?.name}</p>
+    </div>
+    <div class="col">
+    <p className='h5'>Email : {user?.email}</p>
+    </div>
+  
+    <div class="col">
+    <p className='h5'>Username : {user?.username}</p>
+    </div>
+    </div>
+    </div>
+                
+    <ul className='list-items mx-auto p-2'>
 {currentPosts.map((post) => {
           // Find the user with matching ID
           return (
             <li key={post.id}>
-              <h3>{post.title}</h3>
-              <p>{post.body}</p>
+               
+               <div className='mx-auto p-2'>
+        <div class="card" >
+          <div class="card-body">
+
+               <div class="list-group-item list-group-item-action mx-auto p-2" aria-current="true">
+                      <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-1">{post.title}</h5>
+
+                      </div>
+
+                      <p class="mb-1 lead">{post.body}</p>
+
+              
+              </div>
+              </div></div>
+              </div>
 
             </li>
           );
         })}
       </ul>
-  </>);
+
+      </div>
+      </div>
+      </div>
+      </div>
+  </>
+  );
 };
 
 export default User;

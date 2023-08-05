@@ -14,10 +14,11 @@ console.log(user)
   };
 
   return (
+<>
 
     <Navbar bg="primary" data-bs-theme="dark">
     <Container>
-      <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+      <Navbar.Brand href="/">Navbar</Navbar.Brand>
       <Nav className="me-auto">
         <Nav.Link to="/">Home</Nav.Link>
         <Navbar.Collapse className="justify-content-end">
@@ -31,7 +32,7 @@ console.log(user)
            
           </>
         ) : (
-          <li><Nav.Link to="/login">Login</Nav.Link></li>
+          <Link to="/login">Login</Link>
         )}
           
         </Navbar.Collapse>
@@ -42,6 +43,7 @@ console.log(user)
     </Container>
   </Navbar>
   
+  </>
     
   );
 };

@@ -47,7 +47,7 @@ const AddPost = ({onValueReceive}) => {
       const response = await axios.post('https://jsonplaceholder.typicode.com/posts', newPost);
       console.log('New post added:', response.data);
       setShow(false)
-    //   onValueReceive(response.data);
+      onValueReceive(response.data);
       // Optionally, you can redirect or show a success message here
     } catch (error) {
       console.error('Error adding new post:', error);
@@ -56,33 +56,36 @@ const AddPost = ({onValueReceive}) => {
   };
 
   return (
-    <>
+    <div className='container'>
 
     {
-         user ? (<Button variant="primary" onClick={handleShow}>
-        Add Post      </Button>)  : (<h1>You need to login to post</h1>)
+         user ? (<div class="clearfix">
+          <Button variant="primary" className="float-end" onClick={handleShow}>
+        Add Post      </Button></div>)  : (
+        <div class="alert alert-danger" role="alert">
+        You need to login to post
+      </div>
+        )
 
     }
     
 
     <Modal show={show} onHide={handleClose}>
     <Modal.Header closeButton>
-      <Modal.Title>Modal heading</Modal.Title>
+      <Modal.Title><p className='h5'>Add New Post</p></Modal.Title>
     </Modal.Header>
     <Modal.Body>
-
     <div>
-      <h2>Add New Post</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Title:</label>
-          <input type="text" value={title} onChange={handleTitleChange} />
+          <input type="text" className='form-control' value={title} placeholder='Post Title' onChange={handleTitleChange} />
         </div>
-        <div>
-          <label>Body:</label>
-          <textarea value={body} onChange={handleBodyChange} />
+        <div className='pt-4'>
+          <textarea value={body} className='form-control' placeholder='Post Body' onChange={handleBodyChange} />
         </div>
+        <div class="d-grid gap-2 mx-auto pt-4">
         <button type="submit">Submit</button>
+        </div>
       </form>
     </div>
 
@@ -92,7 +95,7 @@ const AddPost = ({onValueReceive}) => {
 
 
    
-  </>
+  </div>
 
   );
 };

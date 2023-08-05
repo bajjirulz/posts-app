@@ -53,6 +53,14 @@ nav {
   
   ul {
     list-style: none;
+    }
+  
+li {
+      margin-bottom: 20px;
+  }
+       
+  /* ul {
+    list-style: none;
     display: flex;
     justify-content: space-around;
   }
@@ -68,4 +76,4 @@ nav {
 
   a{
     color:blue !important
-  }
+  } */
